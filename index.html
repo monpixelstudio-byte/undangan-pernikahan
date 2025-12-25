@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan Indah & Febri</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#6b4f4f;
+  --secondary:#a67c52;
+  --text:#3a3a3a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Poppins',sans-serif;
+  color:var(--text);
+  line-height:1.8;
+  overflow:hidden;
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(8px);
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  padding:10px;
+  z-index:999;
+}
+.nav a{
+  font-size:12px;
+  text-decoration:none;
+  color:var(--primary);
+  padding:6px 12px;
+  border-radius:20px;
+}
+.nav a:hover{background:var(--primary);color:#fff}
+
+/* SECTION */
+section{
+  min-height:100vh;
+  max-width:900px;
+  margin:auto;
+  padding:120px 20px 80px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* COVER BACKGROUND FOTO */
+.cover{
+  min-height:100vh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:120px 20px 80px;
+
+  /* FOTO BACKGROUND */
+  background:
+    linear-gradient(
+      rgba(0,0,0,.45),
+      rgba(0,0,0,.45)
+    ),
+    url("image/coverrr.JPG") center/cover no-repeat;
+
+  color:#fff;
+}
+
+/* PAKSA TEKS PUTIH */
+.cover p,
+.cover h1{
+  color:#fff;
+}
+
+/* TEXT */
+h1,h2{
+  font-family:'Playfair Display',serif;
+  margin-bottom:16px;
+}
+p{font-size:14px;opacity:.9}
+
+/* DIVIDER */
+.divider{
+  display:flex;
+  justify-content:center;
+  margin:30px 0;
+}
+.divider span{
+  width:60px;height:2px;
+  background:var(--secondary);
+}
+
+/* BUTTON */
+.btn{
+  margin-top:30px;
+  padding:14px 34px;
+  border:none;
+  border-radius:999px;
+  background:var(--primary);
+  color:#fff;
+  font-size:13px;
+  letter-spacing:2px;
+  cursor:pointer;
+}
+
+/* FADE */
+.fade{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s ease;
+}
+.fade.show{opacity:1;transform:none}
+
+/* STORY */
+.story{
+  display:grid;
+  gap:30px;
+}
+.story-item{
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(8px);
+  padding:24px;
+  border-radius:24px;
+}
+.story-item img{
+  width:120px;height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:16px;
+}
+
+/* JOURNEY */
+.journey{
+  display:grid;
+  gap:40px;
+}
+.journey-item{
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(8px);
+  padding:26px;
+  border-radius:24px;
+}
+.journey-item img{
+  width:100%;
+  max-height:260px;
+  object-fit:cover;
+  border-radius:18px;
+  margin:16px 0;
+}
+
+/* GALLERY (2 BARIS FIX) */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.gallery img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+.lightbox.show{display:flex}
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+}
+
+/* MUSIC */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:52px;height:52px;
+  border-radius:50%;
+  border:none;
+  background:var(--primary);
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  z-index:1000;
+}
+
+/* FOOTER */
+footer{
+  padding:60px 20px;
+  text-align:center;
+  font-size:13px;
+  opacity:.7;
+}
+
+/* AKAD UI */
+.akad-card{
+  display:grid;
+  gap:30px;
+  margin-top:30px;
+}
+
+.akad-item{
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(10px);
+  padding:28px;
+  border-radius:26px;
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.akad-item h3{
+  font-family:'Playfair Display',serif;
+  color:var(--primary);
+  margin:6px 0;
+}
+
+.label{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--secondary);
+}
+
+.address{
+  font-size:14px;
+  opacity:.85;
+  margin-top:6px;
+}
+
+/* MAP */
+.map-wrapper{
+  margin-top:40px;
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
+.map-wrapper iframe{
+  width:100%;
+  height:320px;
+  border:0;
+}
+
+/* MEMPELAI */
+.couple-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+
+.couple-card{
+  text-align:center;
+  max-width:260px;
+}
+
+.photo-frame{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:0 auto 18px;
+  border:6px solid rgba(255,255,255,.7);
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.couple-card h3{
+  font-size:20px;
+  margin-bottom:8px;
+}
+
+.couple-card .parent{
+  font-size:14px;
+  line-height:1.6;
+  opacity:.85;
+}
+
+.and{
+  font-size:40px;
+  font-weight:300;
+  opacity:.6;
+}
+
+/* GIFT */
+.gift-desc{
+  max-width:520px;
+  margin:0 auto 30px;
+  font-size:14px;
+  opacity:.9;
+}
+
+.gift-card{
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(10px);
+  padding:34px 28px;
+  border-radius:28px;
+  box-shadow:0 18px 45px rgba(0,0,0,.1);
+  max-width:420px;
+  margin:auto;
+}
+
+.bank-logo{
+  font-weight:600;
+  letter-spacing:3px;
+  font-size:18px;
+  color:var(--secondary);
+  margin-bottom:14px;
+}
+
+.gift-number{
+  font-size:22px;
+  letter-spacing:2px;
+  font-weight:500;
+  margin:10px 0;
+}
+
+.gift-name{
+  font-size:14px;
+  opacity:.85;
+  margin-bottom:24px;
+}
+
+.btn-gift{
+  width:100%;
+}
+/* FLORAL FRAME */
+.floral-frame{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(to bottom,#fff,#fdf6f7);
+}
+
+.floral{
+  position:absolute;
+  width:220px;
+  opacity:.55;
+  pointer-events:none;
+}
+
+.floral-top{
+  top:-40px;
+  left:-40px;
+}
+
+.floral-bottom{
+  bottom:-40px;
+  right:-40px;
+}
+
+/* GIFT SECTION */
+.gift-desc{
+  max-width:480px;
+  margin:0 auto 30px;
+  font-size:14px;
+  line-height:1.8;
+  opacity:.85;
+}
+
+.gift-card{
+  max-width:360px;
+  margin:0 auto;
+  padding:34px 26px;
+  border-radius:30px;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(10px);
+  box-shadow:0 25px 55px rgba(0,0,0,.12);
+  position:relative;
+  z-index:2;
+}
+
+.bank-logo{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#e8b4b8,#f7d9dc);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin:0 auto 18px;
+}
+
+.bank-name{
+  font-size:16px;
+  font-weight:500;
+  margin-bottom:6px;
+}
+
+.bank-number{
+  font-size:20px;
+  letter-spacing:2px;
+  font-weight:600;
+  margin:10px 0;
+}
+
+.bank-owner{
+  font-size:13px;
+  opacity:.8;
+  margin-bottom:22px;
+}
+
+.gift-btn{
+  width:100%;
+  padding:14px;
+  font-size:12px;
+  letter-spacing:1.5px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- COVER -->
+<section id="cover" class="cover">
+  <p>Undangan Pernikahan</p>
+  <h1>Indah Nur’aini<br>&amp;<br>Febriansyah</h1>
+  <div class="divider"><span></span></div>
+  <p>Rabu, 4 Februari 2026</p>
+  <button class="btn" id="openInvite">Buka Undangan</button>
+</section>
+
+
+<nav class="nav">
+  <a href="#story">Mempelai</a>
+  <a href="#journey">Cerita</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#details">Akad</a>
+  <a href="#gift">Gift</a>
+  <a href="#ucapan">Ucapan</a>
+</nav>
+
+<!-- MEMPELAI -->
+<section class="fade" id="story">
+  <h2>Mempelai</h2>
+  <div class="divider"><span></span></div>
+
+  <div class="couple-wrapper">
+    
+    <!-- MEMPELAI WANITA -->
+    <div class="couple-card">
+      <div class="photo-frame">
+        <img src="image/WANITA REV.jpg" alt="Indah Nur’aini">
+      </div>
+      <h3>Indah Nur’aini</h3>
+      <p class="parent">
+        Putri dari<br>
+        Bapak Lilik Fachruroji (Alm)<br>
+        &amp; Ibu Yuli Wijiastuti, S.Pd
+      </p>
+    </div>
+
+    <span class="and">&amp;</span>
+
+    <!-- MEMPELAI PRIA -->
+    <div class="couple-card">
+      <div class="photo-frame">
+        <img src="image/PRIA REV.jpg" alt="Febriansyah">
+      </div>
+      <h3>Febriansyah</h3>
+      <p class="parent">
+        Putra dari<br>
+        Bapak Santawi<br>
+        &amp; Ibu Safudoh
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CERITA -->
+<section class="fade" id="journey">
+  <h2>Cerita Perjalanan Kami</h2>
+  <div class="divider"><span></span></div>
+
+  <div class="journey">
+    <div class="journey-item">
+        <h3>🌱 Awal Bertemu — 2020</h3>
+      <img src="image/awalbertemu.JPG">
+      <p>KKami pertama kali saling mengenal di akhir tahun 2020.
+        Awalnya sederhana, hanya perkenalan singkat,
+        namun menjadi awal dari cerita yang panjang.</p>
+    </div>
+    <div class="journey-item">
+       <h3>💬 Kembali Terhubung — 2021</h3>
+      <p>Di awal tahun 2021, sekitar bulan Maret,
+        komunikasi yang sempat terhenti kembali terjalin.
+        Pada bulan April hingga Mei 2021, kami akhirnya bertemu.
+        Dari pertemuan itu, rasa nyaman tumbuh perlahan.</p>
+    </div>
+       <div class="journey-item">
+      <h3>🤍 Menjalani Bersama — Juni 2021</h3>
+      <img src="image/menjalanibersama.JPG" alt="Menjalani Bersama">
+      <p>
+        Pada bulan Juni 2021, kami sepakat untuk menjalani hubungan
+        yang lebih serius. Hari demi hari kami lalui bersama,
+        belajar memahami, dan saling menguatkan.
+      </p>
+    </div>
+
+    <div class="journey-item">
+      <h3>🍂 Waktu Berpisah — 2022</h3>
+      <p>
+        Namun perjalanan ini tidak selalu berjalan mulus.
+        Di pertengahan tahun 2022, kami sempat berpisah dan
+        menjalani waktu masing-masing. Masa itu menjadi ruang
+        untuk bertumbuh dan memahami arti satu sama lain.
+      </p>
+    </div>
+
+    <div class="journey-item">
+      <h3>✨ Dipertemukan Kembali — 2023</h3>
+      <img src="image/dipertemukan.JPG" alt="Dipertemukan Kembali">
+      <p>
+        Takdir kembali mempertemukan kami di akhir tahun 2023,
+        sekitar bulan November. Dengan hati yang lebih dewasa
+        dan tujuan yang lebih jelas, kami memilih untuk
+        melanjutkan cerita ini bersama.
+      </p>
+    </div>
+
+    <div class="journey-item">
+      <h3>💍 Menuju Pernikahan</h3>
+      <img src="image/pernikahan.JPG" alt="Menuju Pernikahan">
+      <p>
+        Kini, dengan penuh rasa syukur, kami memantapkan hati
+        untuk melangkah ke jenjang pernikahan—melanjutkan kisah
+        yang sempat terhenti, menjadi perjalanan seumur hidup.
+      </p>
+      <p style="margin-top:14px;font-style:italic;">
+        “Kami percaya, cinta bukan tentang siapa yang datang lebih dulu,
+        melainkan siapa yang tetap memilih untuk bertahan
+        dan pulang satu sama lain.” 🤍
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="fade" id="gallery">
+  <h2>Gallery</h2>
+  <div class="divider"><span></span></div>
+  <div class="gallery">
+    <img src="image/galeri1.JPG">
+    <img src="image/galeri2.jpg">
+    <img src="image/galeri3rev.JPG">
+    <img src="image/galeri4.jpg">
+    <img src="image/galeri5.JPG">
+    <img src="image/galeri6.JPG">
+
+  </div>
+</section>
+
+<!-- AKAD & RESEPSI -->
+<section class="fade" id="details">
+  <h2>Akad & Resepsi</h2>
+  <div class="divider"><span></span></div>
+
+  <div class="akad-card">
+    <div class="akad-item">
+      <p class="label">📅 Hari / Tanggal</p>
+      <h3>Rabu, 4 Februari 2026</h3>
+    </div>
+
+    <div class="akad-item">
+      <p class="label">📍 Tempat</p>
+      <h3>Kediaman Mempelai Wanita</h3>
+      <p class="address">
+        Jl. Sutan Syahrir Link Kubang Sepat<br>
+        RT/RW 001/007
+      </p>
+    </div>
+  </div>
+
+  <div class="map-wrapper">
+    <iframe
+      src="https://www.google.com/maps?q=Jl.+Sutan+Syahrir+Kubang+Sepat&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+
+<!-- GIFT -->
+<section class="fade romantic-gift" id="gift">
+  <h2>Wedding Gift</h2>
+  <div class="divider romantic-divider"><span></span></div>
+
+  <p class="gift-desc">
+    Doa restu Anda adalah hadiah terindah bagi kami.<br>
+    Namun apabila berkenan memberikan tanda kasih,
+    kami sediakan informasi berikut:
+  </p>
+
+  <div class="gift-card">
+    <div class="bank-logo">🏦</div>
+
+    <p class="bank-name">Bank BCA</p>
+    <p class="bank-number" id="rekening">1234567890</p>
+    <p class="bank-owner">a.n. Indah Nur’aini</p>
+
+    <button class="btn gift-btn"
+      onclick="navigator.clipboard.writeText('1234567890')">
+      Salin Nomor Rekening
+    </button>
+  </div>
+</section>
+
+
+
+<!-- UCAPAN -->
+<section class="fade" id="ucapan">
+  <h2>Ucapan & Doa</h2>
+  <div class="divider"><span></span></div>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScUhAlZOyZnBOt4hg5O8apfBB6MXPJwLP16bfTwOWmU5ZsBLw/viewform?usp=sharing&ouid=110652691771168630696"
+    width="100%" height="450"
+    style="border:0;border-radius:20px"></iframe>
+</section>
+
+<footer>Terima kasih atas doa dan restunya 🤍</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox"><img id="lbImg"></div>
+
+<audio id="bgMusic" src="music/Feby Putri - Bernaung Lyrics.mp3" loop></audio>
+<button class="music-btn" id="musicBtn">▶</button>
+
+<script>
+/* FADE */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(i=>i.isIntersecting&&i.target.classList.add('show'))
+},{threshold:.2});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+/* UNLOCK + MUSIC */
+const cover=document.getElementById('cover');
+const music=document.getElementById('bgMusic');
+const musicBtn=document.getElementById('musicBtn');
+
+document.getElementById('openInvite').onclick=()=>{
+  cover.style.display='none';
+  document.body.style.overflow='auto';
+  music.play();
+  musicBtn.textContent='⏸';
+};
+
+/* TOGGLE MUSIC */
+musicBtn.onclick=()=>{
+  if(music.paused){music.play();musicBtn.textContent='⏸'}
+  else{music.pause();musicBtn.textContent='▶'}
+};
+
+/* LIGHTBOX */
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+document.querySelectorAll('.gallery img').forEach(img=>{
+  img.onclick=()=>{lbImg.src=img.src;lb.classList.add('show')}
+});
+lb.onclick=()=>lb.classList.remove('show');
+</script>
+
+</body>
+</html>
