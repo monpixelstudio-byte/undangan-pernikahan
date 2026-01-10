@@ -634,9 +634,40 @@ html{
     opacity:.5;
   }
 }
+/* =======================
+   BACKGROUND GAMBAR PUDAR
+   KECUALI COVER
+   ======================= */
 
+section:not(.cover){
+  position: relative;
+}
+
+section:not(.cover)::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.65),
+      rgba(255,255,255,.65)
+    ),
+    url("image/background new.jpg") top center / 700px repeat;
+
+
+  border-radius:28px;
+  z-index:0;
+}
+
+/* pastikan konten di atas background */
+section:not(.cover) > *{
+  position:relative;
+  z-index:1;
+}
 
 </style>
+
 </head>
 
 <body>
@@ -711,7 +742,7 @@ html{
     <div class="journey-item">
         <h3>🌱 Awal Bertemu — 2020</h3>
       <img src="image/awalbertemu.JPG">
-      <p>KKami pertama kali saling mengenal di akhir tahun 2020.
+      <p>Kami pertama kali saling mengenal di akhir tahun 2020.
         Awalnya sederhana, hanya perkenalan singkat,
         namun menjadi awal dari cerita yang panjang.</p>
     </div>
