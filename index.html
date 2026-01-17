@@ -744,6 +744,17 @@ section:not(.cover) > *{
   <h1>Indah Nur’aini<br>&amp;<br>Febriansyah</h1>
   <div class="divider"><span></span></div>
   <p>Rabu, 4 Februari 2026</p>
+  <p style="margin-top:16px;font-size:14px;">
+  Kepada Yth.<br>
+  <strong id="guestName">Tamu Undangan</strong>
+</p>
+<!-- EDIT HERE: TOMBOL UBAH NAMA -->
+<div style="margin-top:12px;" id="editWrapper">
+  <small style="opacity:.7;cursor:pointer" onclick="editName()">
+    ✏️ Ubah Nama
+  </small>
+</div>
+
   <button class="btn" id="openInvite">Buka Undangan</button>
 </section>
 
@@ -959,7 +970,7 @@ Apabila berkenan berbagi tanda kasih, kami menerimanya dengan penuh rasa syukur 
     <p class="bank-owner">a.n. Indah Nur’aini</p>
 
     <button class="btn gift-btn"
-      onclick="navigator.clipboard.writeText('1234567890')">
+      onclick="navigator.clipboard.writeText('0188 0102 7693 533')">
       Salin Nomor Rekening
     </button>
   </div>
@@ -1043,6 +1054,59 @@ const countdownTimer = setInterval(() => {
   document.getElementById("seconds").innerText =
     Math.floor((distance % (1000 * 60)) / 1000);
 }, 1000);
+function setGuestName(name) {
+  const el = document.getElementById("guestName");
+  if (el) {
+    el.textContent = name;
+    localStorage.setItem("guest_name", name);
+  }
+}
+// ===============================
+// GUEST NAME HANDLER
+// ===============================
+
+// ambil nama dari URL ?to=Nama
+const params = new URLSearchParams(window.location.search);
+const guestFromUrl = params.get("to");
+const isAdmin = params.get("admin") === "1";
+
+// load pertama kali
+window.onload = () => {
+  const editWrapper = document.getElementById("editWrapper");
+
+  if (guestFromUrl) {
+    setGuestName(decodeURIComponent(guestFromUrl));
+  } else {
+    const savedName = localStorage.getItem("guest_name");
+    if (savedName) {
+      setGuestName(savedName);
+    }
+  }
+
+  // MODE TAMU → sembunyikan tombol edit
+  if (!isAdmin && editWrapper) {
+    editWrapper.style.display = "none";
+  }
+};
+
+
+// tombol edit nama (AUTO UPDATE URL)
+function editName() {
+  const currentName = document.getElementById("guestName").textContent;
+  const newName = prompt("Masukkan nama tamu:", currentName);
+  document.getElementById("editWrapper").style.display = "none";
+
+  if (newName && newName.trim() !== "") {
+    const fixed = newName.trim();
+    setGuestName(fixed);
+
+    const encoded = encodeURIComponent(fixed);
+    const newUrl = `${window.location.pathname}?to=${encoded}`;
+
+    window.history.replaceState({}, "", newUrl);
+  }
+}
+
 
 </script>
 
