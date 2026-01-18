@@ -749,7 +749,7 @@ section:not(.cover) > *{
   <strong id="guestName">Tamu Undangan</strong>
 </p>
 <!-- EDIT HERE: TOMBOL UBAH NAMA -->
-<div style="margin-top:12px;" id="editWrapper">
+<div style="margin-top:12px; display:none;" id="editWrapper">
   <small style="opacity:.7;cursor:pointer" onclick="editName()">
     ✏️ Ubah Nama
   </small>
@@ -1083,10 +1083,11 @@ window.onload = () => {
     }
   }
 
-  // MODE TAMU → sembunyikan tombol edit
-  if (!isAdmin && editWrapper) {
-    editWrapper.style.display = "none";
-  }
+ // MODE ADMIN → tampilkan tombol edit
+if (isAdmin && editWrapper) {
+editWrapper.style.display = "inline-block";
+}
+
 };
 
 
