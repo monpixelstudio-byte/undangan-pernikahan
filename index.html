@@ -735,6 +735,27 @@ section:not(.cover) > *{
 </style>
 
 </head>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get("to");
+  const saved = localStorage.getItem("guest_name");
+
+  let finalName = "Tamu Undangan";
+
+  if (guest) {
+    finalName = decodeURIComponent(guest);
+    localStorage.setItem("guest_name", finalName);
+  } else if (saved) {
+    finalName = saved;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const el = document.getElementById("guestName");
+    if (el) el.textContent = finalName;
+  });
+})();
+</script>
 
 <body>
 
@@ -746,7 +767,7 @@ section:not(.cover) > *{
   <p>Rabu, 4 Februari 2026</p>
   <p style="margin-top:16px;font-size:14px;">
   Kepada Yth.<br>
-  <strong id="guestName">Tamu Undangan</strong>
+  <strong id="guestName"></strong>
 </p>
 <!-- EDIT HERE: TOMBOL UBAH NAMA -->
 <div style="margin-top:12px; display:none;" id="editWrapper">
@@ -1074,14 +1095,6 @@ const isAdmin = params.get("admin") === "1";
 window.onload = () => {
   const editWrapper = document.getElementById("editWrapper");
 
-  if (guestFromUrl) {
-    setGuestName(decodeURIComponent(guestFromUrl));
-  } else {
-    const savedName = localStorage.getItem("guest_name");
-    if (savedName) {
-      setGuestName(savedName);
-    }
-  }
 
  // MODE ADMIN → tampilkan tombol edit
 if (isAdmin && editWrapper) {
